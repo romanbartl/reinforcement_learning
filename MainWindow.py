@@ -21,10 +21,13 @@ class MainWindow:
             if event.type == pygame.QUIT:
                 self.state = GameState.QUIT
 
+    def game_over(self):
+        self.state = GameState.GAME_OVER
+
     def run(self):
         self.state = GameState.RUNNING
         player = Player((WIN_WIDTH, WIN_HEIGHT))
-        ball = Ball((WIN_WIDTH, WIN_HEIGHT))
+        ball = Ball(self, (WIN_WIDTH, WIN_HEIGHT))
 
         while self.state == GameState.RUNNING:
             self.catch_event()
@@ -39,5 +42,8 @@ class MainWindow:
             pygame.display.update()
             #pygame.display.flip()
             #self.clock.tick(100)
+
+        if self.state == GameState.GAME_OVER:
+            print("game over")
 
         pygame.quit()
