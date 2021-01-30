@@ -1,6 +1,7 @@
 import pygame
 from GameState import GameState
 from Player import Player
+from Ball import Ball
 
 
 WIN_WIDTH = 1024
@@ -23,6 +24,7 @@ class MainWindow:
     def run(self):
         self.state = GameState.RUNNING
         player = Player((WIN_WIDTH, WIN_HEIGHT))
+        ball = Ball((WIN_WIDTH, WIN_HEIGHT))
 
         while self.state == GameState.RUNNING:
             self.catch_event()
@@ -31,6 +33,8 @@ class MainWindow:
 
             player.draw(self.screen)
             player.handle_keys()
+
+            ball.draw(self.screen)
 
             pygame.display.update()
             #pygame.display.flip()
