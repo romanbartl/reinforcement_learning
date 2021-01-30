@@ -11,8 +11,12 @@ class Ball(object):
         self.x = (self.screen_size[0] - self.diameter) / 2
         self.y = self.screen_size[1] - self.diameter - 40
         self.step = DEFAULT_STEP
+        self.direction = -1
 
     def draw(self, screen):
-        if self.y != 0:
-            self.y = self.y - self.step
+        # collision with top border
+        if self.y == self.diameter:
+            self.direction = self.direction * -1
+
+        self.y = self.y + self.direction * self.step
         pygame.draw.circle(screen, DEFAULT_COLOR, (self.x, self.y), self.diameter)
