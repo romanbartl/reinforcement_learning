@@ -1,7 +1,9 @@
-import pygame
+from MainWindow import MainWindow
+
 
 def main():
-    print("Hello worrld")
+    mw = MainWindow()
+    mw.run()
 
 if __name__ == "__main__":
     main()
