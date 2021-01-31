@@ -107,12 +107,12 @@ class Environment:
     
         bottom_border_colision, colided_block = self.ball.update(self.objects)
 
-        if colided_block is not None:
-            del self.objects[colided_block]
-
         if bottom_border_colision:
             # TODO reward down
             self.game_over()
+
+        if colided_block is not None:
+            del self.objects[colided_block]
 
         # return game_state, reward, objects states
         return self.game_state, self.reward, [self.objects, self.ball]
@@ -136,3 +136,6 @@ class Environment:
     def get_game_state(self):
         return self.game_state
     
+
+    def pygame_quit(self):
+        pygame.quit()

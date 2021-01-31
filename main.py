@@ -37,7 +37,8 @@ def main():
 
     while True:
         env.render_scene()
-        if env.get_game_state() == GameState.QUIT:
+        if env.get_game_state() == GameState.QUIT or env.get_game_state() == GameState.GAME_OVER:
+            env.pygame_quit()
             break
 
 
