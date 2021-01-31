@@ -5,3 +5,4 @@ class GameState(Enum):
     PAUSED = 1
     QUIT = 2
     GAME_OVER = 3
+    WIN = 4
