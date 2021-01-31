@@ -23,6 +23,12 @@ class MainWindow:
             if event.type == pygame.QUIT:
                 self.state = GameState.QUIT
 
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            self.player.move_left()
+        if key[pygame.K_RIGHT]:
+            self.player.move_right()
+
 
     def get_screen_size(self):
         return WIN_WIDTH, WIN_HEIGHT
@@ -45,7 +51,6 @@ class MainWindow:
             self.screen.fill(WHITE_BACKGROUND)
 
             self.player.draw(self.screen)
-            self.player.handle_keys()
 
             bottom_border_colision = self.ball.update(self.objects)
 

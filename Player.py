@@ -1,19 +1,23 @@
 import pygame 
-import math
 
-DEFAULT_HEIGHT = 20
-DEFAULT_WIDTH = 200
+class Player:
+    DEFAULT_HEIGHT = 20
+    DEFAULT_WIDTH = 200
 
-DEFAULT_COLOR = (0, 0, 128)
+    DEFAULT_COLOR = (0, 0, 128)
 
-class Player(object):
-    def __init__(self, screen_size):
+    def __init__(self, screen_size, color=None):
         self.screen_size = screen_size
 
-        x = (self.screen_size[0] - DEFAULT_WIDTH) / 2
-        y = self.screen_size[1] - DEFAULT_HEIGHT - 20
+        self.width = self.DEFAULT_WIDTH
+        self.height = self.DEFAULT_HEIGHT
+        self.x = (self.screen_size[0] - self.width) / 2
+        self.y = self.screen_size[1] - self.height - 20
 
-        self.rect = pygame.rect.Rect((x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT))
+        if color is None:
+            self.color = self.DEFAULT_COLOR
+        else:
+            self.color = color
 
 
     def handle_keys(self):
@@ -28,35 +32,45 @@ class Player(object):
                 self.rect.move_ip(1, 0)
 
 
+    def move_left(self):
+        if self.x != 0:
+            self.x -= 1
+
+
+    def move_right(self):
+        if self.x != self.screen_size[0] - self.width:
+            self.x += 1
+
+
     def draw(self, screen):
-        pygame.draw.rect(screen, DEFAULT_COLOR, self.rect)
+        pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
 
 
     def set_width(self, width):
-        self.rect.width = width
+        self.width = width
 
 
     def set_height(self, height):
-        self.rect.height = height
+        self.height = height
 
  
     def set_position(self, x, y):
-        self.rect.x = x
-        self.rect.y = y
+        self.x = x
+        self.y = y
 
 
     def get_x(self):
-        return self.rect.x
+        return self.x
 
 
     def get_y(self):
-        return self.rect.y
+        return self.y
 
     
     def get_width(self):
-        return self.rect.width
+        return self.width
 
 
     def get_height(self):
-        return self.rect.height
+        return self.height
 
