@@ -92,8 +92,8 @@ class Ball(object):
 
         for obj in objects:
             if self.check_object_collision(obj):
-                if type(obj) == Player:
-                    self.change_y_direction()
+                #if type(obj) == Player:
+                self.change_y_direction()
 
         return False
 
