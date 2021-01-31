@@ -18,19 +18,7 @@ class Player:
             self.color = self.DEFAULT_COLOR
         else:
             self.color = color
-
-
-    def handle_keys(self):
-        key = pygame.key.get_pressed()
-        dist = 1
-        
-        if key[pygame.K_LEFT]:
-            if self.rect.x != 0:
-                self.rect.move_ip(-1, 0)
-        if key[pygame.K_RIGHT]:
-            if self.rect.x != self.screen_size[0] - self.rect.width:
-                self.rect.move_ip(1, 0)
-
+            
 
     def move_left(self):
         if self.x != 0:
