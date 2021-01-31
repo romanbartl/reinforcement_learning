@@ -1,4 +1,5 @@
 import pygame 
+from Actions import Actions 
 
 class Player:
     DEFAULT_HEIGHT = 20
@@ -18,16 +19,24 @@ class Player:
             self.color = self.DEFAULT_COLOR
         else:
             self.color = color
-            
+
+        self.moving_direction = None
+
 
     def move_left(self):
+        self.moving_direction = Actions.LEFT
         if self.x != 0:
             self.x -= 1
 
 
     def move_right(self):
+        self.moving_direction = Actions.RIGHT
         if self.x != self.screen_size[0] - self.width:
             self.x += 1
+
+
+    def stop(self):
+        self.moving_direction = None 
 
 
     def draw(self, screen):
@@ -61,4 +70,8 @@ class Player:
 
     def get_height(self):
         return self.height
+
+
+    def get_direction(self):
+        return self.moving_direction
 

@@ -1,5 +1,5 @@
 from enum import Enum 
 
 class Actions(Enum):
-    LEFT = 0
+    LEFT = -1
     RIGHT = 1

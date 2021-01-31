@@ -87,16 +87,33 @@ class Ball(object):
         return False
 
 
+    def change_velocity_same_dir(self):
+        self.velocity[0] *= -1
+
+    
+    def change_velocity_oposite_dir(self):
+        pass
+
+
     def check_collisions(self, objects):
         if self.check_border_collisons():
             return True, None
 
         for i, obj in enumerate(objects):
             if self.check_object_collision(obj):
-                #if type(obj) == Player:
-                self.change_y_direction()
+                if type(obj) == Player:
+                    player_moving_direction = obj.get_direction()
+
+                    if player_moving_direction is not None:
+                        if obj.get_direction().value * self.velocity[0] > 0:
+                            self.change_velocity_same_dir()
+                        else:
+                            self.change_velocity_oposite_dir()
+                    
+                    self.change_y_direction()
 
                 if type(obj) == Block:
+                    self.change_y_direction()
                     return False, i
 
         return False, None

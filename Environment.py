@@ -101,9 +101,10 @@ class Environment:
 
         if action == Actions.LEFT:
             self.player.move_left()
-        
-        if action == Actions.RIGHT:
+        elif action == Actions.RIGHT:
             self.player.move_right()
+        else:
+            self.player.stop()
     
         bottom_border_colision, colided_block = self.ball.update(self.objects)
 
