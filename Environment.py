@@ -105,7 +105,10 @@ class Environment:
         if action == Actions.RIGHT:
             self.player.move_right()
     
-        bottom_border_colision = self.ball.update(self.objects)
+        bottom_border_colision, colided_block = self.ball.update(self.objects)
+
+        if colided_block is not None:
+            del self.objects[colided_block]
 
         if bottom_border_colision:
             # TODO reward down

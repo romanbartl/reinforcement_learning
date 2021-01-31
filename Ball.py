@@ -1,6 +1,7 @@
 import pygame 
 import numpy as np
 from Player import Player
+from Block import Block
 
 
 DEFAULT_DIAMETER = 16
@@ -88,12 +89,15 @@ class Ball(object):
 
     def check_collisions(self, objects):
         if self.check_border_collisons():
-            return True
+            return True, None
 
-        for obj in objects:
+        for i, obj in enumerate(objects):
             if self.check_object_collision(obj):
                 #if type(obj) == Player:
                 self.change_y_direction()
 
-        return False
+                if type(obj) == Block:
+                    return False, i
+
+        return False, None
 
