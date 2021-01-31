@@ -56,8 +56,7 @@ class MainWindow:
             self.ball.draw(self.screen)
 
             pygame.display.update()
-            #pygame.display.flip()
-            #self.clock.tick(100)
+            self.clock.tick(1000)
 
         if self.state == GameState.GAME_OVER:
             print("game over")
