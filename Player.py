@@ -45,21 +45,18 @@ class Player(object):
         self.rect.y = y
 
 
-    def clamp(self, min, max, value):
-        if value < min:
-            return min
-        elif value > max:
-            return max
-        return value
+    def get_x(self):
+        return self.rect.x
 
 
-    def is_colision_with_ball(self, ball_params):
-        x_point = self.clamp(self.rect.x, self.rect.x + self.rect.width, ball_params['x'])
-        y_point = self.clamp(self.rect.y, self.rect.y + self.rect.height, ball_params['y'])
+    def get_y(self):
+        return self.rect.y
 
-        distance = (x_point - ball_params['x'])**2 + (y_point - ball_params['y'])**2
+    
+    def get_width(self):
+        return self.rect.width
 
-        if ball_params['d']**2 > distance:
-            return True
-        
-        return False
+
+    def get_height(self):
+        return self.rect.height
+

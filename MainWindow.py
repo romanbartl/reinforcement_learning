@@ -32,22 +32,6 @@ class MainWindow:
         self.state = GameState.GAME_OVER
 
 
-    def ball_collision(self):
-        ball_params = self.ball.get_params()
-
-        # collision with top border
-        if ball_params['y'] == ball_params['d']:
-            self.ball.change_direction()
-        # collision with bottom border
-        if ball_params['y'] == WIN_HEIGHT - ball_params['d']:
-            self.game_over()
-
-        # collision with other objects
-        for obj in self.objects:
-            if obj.is_colision_with_ball(ball_params):
-                self.ball.change_direction()
-
-
     def run(self):
         self.state = GameState.RUNNING
         
@@ -63,8 +47,13 @@ class MainWindow:
             self.player.draw(self.screen)
             self.player.handle_keys()
 
+            bottom_border_colision = self.ball.update(self.objects)
+
+            if bottom_border_colision:
+                self.game_over()
+                break
+
             self.ball.draw(self.screen)
-            self.ball_collision()
 
             pygame.display.update()
             #pygame.display.flip()
